@@ -33,14 +33,18 @@
 ## Installation
 
   You can use any linux you want.
+  
   ```git clone https://github.com/ViperZCrew/ap_killer.git```
+  
   ```cd ap_killer && chmod +x *.sh```
   
   Using Tool at attack:
   
+
 ```bash setup.sh```
 
-  ```main.sh``` is the main script but do not start it because then setup.sh enable the monitor mode and mac spoofer.
+
+```main.sh``` is the main script but do not start it because then setup.sh enable the monitor mode and mac spoofer.
   Make sure you have killed all networking processes, and close firefox or any internet application.
 
 ## Credits
