@@ -1,7 +1,6 @@
 # ACCESS POINT KILLER
 
 
-
 ## Table of contents:
 * [General Information](#general-info)
 * [Changelog](#changelog)
