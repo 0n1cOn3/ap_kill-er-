@@ -57,7 +57,7 @@ Telegram:
 * @On1c0n3
 * @rebl0x3r
 
-# Join us at telegram: https://t.me/viperzcrew  
+# Join us at telegram: https://t.me/rebl0x3r  
 
 ## Bug Report
   If you found any bug or issue, pless go [here](https://github.com/ViperZCrew/ap_killer/issues)
