@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# Configuration the Ennvironment
 RED="\e[31m"
 GREEN="\e[32m"
 YELLOW="\e[33m"
@@ -14,6 +16,7 @@ mac=$(macchanger -s wlan0 | grep Current |  awk '{print $3}')
 chmac=$(sudo macchanger -a wlan0 | grep New | awk '{print $3}')
 c=$(ifconfig | grep wlan0mon | awk '{print $1}' | tr -d :)
 
+# Start Script
 chmod +x main.sh
 echo -e $CYAN""
 clear
@@ -36,19 +39,21 @@ rm new.txt
 echo ""
 sleep 3
 echo ""
-echo -e "${BLUE}[*] ${YELLOW}Checking if you are in monitor mode.."
+echo -e "${BLUE}[*] ${YELLOW}Checking if your Wifi-Chipset is in monitor mode.."
 sleep 2
 if [[ $c == "wlan0mon" ]]; then
 	echo -e "[*] wlan0mon found."
+	echo -e "Your Wifi-Chipset is already running in monitor mode"
 else
 	
 	echo ""
-	echo -e "${RED}[!] ${YELLOW}You are not in apdater mode."
+	echo -e "${RED}[!] ${YELLOW}Your Wifi-Chipset is not running in monitor mode"
 	airmon-ng check kill
-	echo -e "${RED}[!] Expecting error...
-${GREEN}Will fixing it...."
+	echo -e "${RED}[!] Expecting error... 
+	${GREEN}enable monitor mode for Wifi-Chipset..."
 	airmon-ng start wlan0mon &>$path/error.log
-	echo -e "${BLUE}[*] ${GREEN}Adapter mode started."
+	sleep 0.5
+	echo -e "${BLUE}[*] ${GREEN}Your Wifi-Chipset's monitor mode has been enabled"
 	if [ -f error.log ]
 	then
 		airmon-ng check kill
