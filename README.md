@@ -65,9 +65,11 @@
   Using Tool at attack:
   
 
-```./setup.sh <interface>```
-** For example: 
-```./setup.sh wlan1```
+  ```./setup.sh <interface>```
+
+*** For example: 
+
+  ```./setup.sh wlan1```
 
 ```main.sh``` is the main script but do not start it because then setup.sh enable the monitor mode and mac spoofer.
   Make sure you have killed all networking processes, and close firefox or any internet application.
