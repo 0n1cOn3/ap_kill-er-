@@ -44,7 +44,7 @@
   * Added 2 methods to attack
   * Added MAC changer
 
-## Access Point Flood Script
+## Access Point Flooder
   This will be in next update a script to flood all channels in your range with access points.
   The script is more for trolling people, you can still use it if you can.
   
