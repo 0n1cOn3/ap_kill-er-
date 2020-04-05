@@ -21,14 +21,14 @@
 
 ## Changelog
 
- **Coming soon:
+ ***Coming soon:***
 
   **Version 0.4**
  * Resetting spoofed mac
  * Access Point Flood script [see more here](#access-point-flooder)
  
  
-  **Already leaked versions:
+  **Already leaked versions:**
   
   **Version: 0.3**
   * Added to except to start main.sh
@@ -67,7 +67,7 @@
 
   ```./setup.sh <interface>```
 
-**For example: 
+**For example:**
 
   ```./setup.sh wlan1```
 
