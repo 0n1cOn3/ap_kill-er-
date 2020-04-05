@@ -12,56 +12,84 @@ BOLD="\e[1m"
 NORMAL="\e[0m"
 
 path=$(pwd)
-mac=$(macchanger -s wlan0 | grep Current |  awk '{print $3}')
-chmac=$(sudo macchanger -a wlan0 | grep New | awk '{print $3}')
-c=$(ifconfig | grep wlan0mon | awk '{print $1}' | tr -d :)
+mac=$(macchanger -s $1 | grep Current |  awk '{print $3}')
+chmac=$(sudo macchanger -a $1 | grep New | awk '{print $3}')
+c=$(ifconfig | grep mon | awk '{print $1}' | tr -d :)
+
 
 # Start Script
 chmod +x main.sh
 echo -e $CYAN""
 clear
+if [ -f error.log ]
+then
+	rm error.log
+fi
 echo -e $BOLD""
 figlet AP-K1LL3R
 echo -e ""
-echo -ne "${BLUE}[*] ${YELLOW}Your current MAC is: ${RED}$mac"
-sleep 0.2
+echo -e "${BLUE}[*] ${YELLOW}Interface detected: ${RED}$1"
 echo ""
-echo ""
-echo -e "${BLUE}[*] ${YELLOW}Changing MAC now..."
-sleep 0.5
-ifconfig wlan0 down
-sudo macchanger -a wlan0 | grep New | awk '{print $3}' > new.txt
-newmac=$(cat new.txt)
-ifconfig wlan0 up
-echo ""
-echo -ne "${BLUE}[*] ${YELLOW}New MAC: ${GREEN}$newmac"
-rm new.txt
-echo ""
-sleep 3
-echo ""
-echo -e "${BLUE}[*] ${YELLOW}Checking if your Wifi-Chipset is in monitor mode.."
-sleep 2
-if [[ $c == "wlan0mon" ]]; then
-	echo -e "[*] wlan0mon found."
-	echo -e "Your Wifi-Chipset is already running in monitor mode"
+if [[ $1 == "" ]]
+then
+	echo -e "${RED}[*] ${YELLOW}Please specify interface.
+
+Example :${MAGENTA} ./setup.sh wlan0"
+elif [[ $1 == "$1mon" ]]
+then
+	echo -e "${BLUE}[*] ${RED}You are already in monitor mode1."
+	sleep 2
+	echo -e "${BLUE}[*] ${YELLOW}Starting the main tool..."
+	sleep 1.5
+	bash main.sh
+
 else
-	
+	echo -ne "${BLUE}[*] ${YELLOW}Your current MAC is: ${RED}$mac"
+	sleep 0.2
 	echo ""
-	echo -e "${RED}[!] ${YELLOW}Your Wifi-Chipset is not running in monitor mode"
+	echo ""
+	echo -e "${BLUE}[*] ${YELLOW}Changing MAC now..."
+	sleep 0.5
+	ifconfig $1 down
+	sudo macchanger -a $1 | grep New | awk '{print $3}' > new.txt
+	newmac=$(cat new.txt)
+	ifconfig $1 up
+	echo ""
+	echo -ne "${BLUE}[*] ${YELLOW}New MAC: ${GREEN}$newmac"
+	rm new.txt
+	echo ""
+	sleep 3
+	echo ""
+	echo -e "${BLUE}[*] ${YELLOW}Enabling Wifi-Adapter..."
 	airmon-ng check kill
-	echo -e "${RED}[!] Expecting error... 
-	${GREEN}enable monitor mode for Wifi-Chipset..."
-	airmon-ng start wlan0mon &>$path/error.log
+	airmon-ng start $1 
 	sleep 0.5
 	echo -e "${BLUE}[*] ${GREEN}Your Wifi-Chipset's monitor mode has been enabled"
+	export $1
 	if [ -f error.log ]
 	then
-		airmon-ng check kill
-		airmon-ng start wlan0 &>$path/error.log
+		echo -e "[!] You have some error, check errors in: error.log"
+		airmon-ng stop $c
+		service network-manager restart
+	fi
+	
+	echo -ne "${BLUE}[*] ${YELLOW}Do you want to start main tool now?[Y/N](default: Y): "
+	read to
+	if [[ $to == "y" || $to == "Y" ]]
+	then
+		
 		bash main.sh
 	else
-		echo -e "[!] You have some error, check errors in: error.log"
-	
+		sleep 0.5
+		echo -ne "${BLUE}[*] ${YELLOW}Do you want to exit interface: ${RED}$c[Y/N]?: "
+		read ei
+		sleep 0.5
+		if [[ $ex == "y" || $ei == "Y" ]]
+		then
+			airmon-ng stop $c
+			service network-manager restart
+			echo "${BLUE}[*] ${YELLOW}Successfully stopped wifi adapter mode..."
+			sleep 1.5
+		fi
 	fi
 fi
-
