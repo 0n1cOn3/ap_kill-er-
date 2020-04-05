@@ -15,6 +15,7 @@ function pause {
 	}
 
 clear
+rm *.txt
 echo -e $BOLD"${CYAN}"
 figlet AP-K1LL3R
 sleep 1
