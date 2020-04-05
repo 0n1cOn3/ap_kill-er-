@@ -24,7 +24,7 @@ echo -e "${RED}[!] Important: ${MAGENTA}All errors will saved in ${RED}$path/err
 ${MAGENTA}If you have any unexpected error, report it to my github:
 
 ${YELLOW}https://github.com/ViperZCrew/ap_killer
-${RED}Version: v0.3
+${RED}Version: v0.4
 ${MAGENTA}Creator: MrBlackX
 ${BLUE}Telegram: t.me/rebl0x3r
 "
