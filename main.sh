@@ -11,6 +11,7 @@ RESTORE="\e[39"
 BOLD="\e[1m"
 NORMAL="\e[0m"
 clear
+rm *.txt
 echo -e $BOLD"${CYAN}"
 figlet AP-K1LL3R
 sleep 1
@@ -19,11 +20,8 @@ echo -e "${RED}[!] Important: ${MAGENTA}All errors will saved in ${RED}$path/err
 ${MAGENTA}If you have any unexpected error, report it to my github:
 
 ${YELLOW}https://github.com/ViperZCrew/ap_killer
-
-${RED}Version: v0.1 [BETA VERSION]
-
+${RED}Version: v0.3
 ${MAGENTA}Creator: MrBlackX
-
 ${BLUE}Telegram: t.me/rebl0x3r
 "
 
