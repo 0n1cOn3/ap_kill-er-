@@ -96,7 +96,7 @@
   
   Getting interface you searching for:
   
-  ```ifconfig | grep wlan0 | awk '{print $1} | tr -d :'```
+  ```ifconfig | grep wlan | awk '{print $1} | tr -d :'```
   
   It should give you an output
   Note: 
