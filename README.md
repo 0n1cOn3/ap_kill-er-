@@ -4,6 +4,7 @@
 ## Table of contents:
 * [General Information](#general-info)
 * [Changelog](#changelog)
+* [Access Point Flooder](#acfl)
 * [Installation](#installation)
 * [Disclaimer](#disclaimer)
 * [Credits](#credits)
@@ -20,9 +21,33 @@
 
 ## Changelog
 
-  **[BETA] v0.1:**
+ ***Coming soon:
+
+  **Version 0.4**
+ * Resetting spoofed mac
+ * Access Point Flood script[see more here](#acfl)
+ 
+ 
+  ***Already leaked versions:
+  
+  **Version: 0.3**
+  * Added to except to start main.sh
+  * Added if option above is denied, asking to disable monitor mode
+  * Added CTRL+C after starting deauthing 
+  * Added disabling monitor mode after aborting attack
+  
+  **Version: 0.2:**
+  * Added option to add interface
+  * Added interface detection
+
+  **[BETA] Version 0.1:**
   * Added 2 methods to attack
   * Added MAC changer
+
+## Access Point Flood Script
+  This will be in next update a script to flood all channels in your range with access points.
+  The script is more for trolling people, you can still use it if you can.
+  
 
 ## Disclaimer
   Use this tool for purposes only .:-) 🕵️‍♂️
@@ -40,8 +65,9 @@
   Using Tool at attack:
   
 
-```bash setup.sh```
-
+```./setup.sh <interface>```
+** For example: 
+```./setup.sh wlan1```
 
 ```main.sh``` is the main script but do not start it because then setup.sh enable the monitor mode and mac spoofer.
   Make sure you have killed all networking processes, and close firefox or any internet application.
