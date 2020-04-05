@@ -14,22 +14,25 @@
 # General Information
 
   Acces Point Killer was only for my personal help, i have not found a working tool that deauthenticate all access points(AP)
-  out of network. After some researching i began to wrote this little script-tool. 
-  The AP killer automatically changing your mac address at the setup, then it checks if you have enabled **wlan0mon** or not.
+  out of network. After some researching i began to write this little script-tool. 
+  The AP killer automatically changing your mac address at the setup, then it checks if you have enabled **mon**-interface or
+  not. It will detect if you are already in monitor mode or not.
   You can enable it manually before you are starting the script. This tool is an linux CLI tool, which only works on **Linux**
   and not Termux or other phone platforms.
 
 # Changelog
 
 
- ## Coming soon:
-
-  **Version 0.4**
- * Resetting spoofed mac
- * Access Point Flood script [see more here](#access-point-flooder)
+ ## In Progress:
+ 
+  **Version 0.5**
+  * Resetting spoofed mac
  
  
   ## Already leaked versions:
+  
+  **Version 0.4**
+  * Added Access Point Flood script [see more here](#access-point-flooder)
   
   **Version: 0.3**
   * Added to except to start main.sh
@@ -47,8 +50,32 @@
 
 # Access Point Flooder
   This will be in next update a script to flood all channels in your range with access points.
-  The script is more for trolling people, you can still use it if you can.
+  The script is more for trolling people, you can still use it if you can. 
+  You can use own word for SSIDs.
+  SSID = Name of WiFi.
+  The script will read the file ```~/ap_killer/wordlist.txt``` so you can add manually, generate or skip it.
   
+  *Manualy:*
+  Script will prompt a gedit file, type any name upto 10 characters and save it with ctrl+s, close it with alt+f4.
+  
+  *Automatically*
+  User will enter count of words, then it generates words and using them.
+  
+  *Skipping*
+  If you have already a file inside there, then it will skip.
+  
+  
+  **How To Use:**
+  
+  ```chmod +x fakeap.sh```
+  
+  **Run Script:**
+  
+  ```./fakeap.sh <interface>```
+  
+  **Example**
+  
+  ```./fakeap.sh wlan0mon```
 
 # Disclaimer
   Use this tool for purposes only .:-) 🕵️‍♂️
@@ -63,9 +90,16 @@
   
   ```cd ap_killer && chmod +x *.sh```
   
+  Getting interface you searching for:
+  
+  ```ifconfig | grep wlan0 | awk '{print $1} | tr -d :'```
+  
+  It should give you an output
+  Note: 
+  *Some laptops are using WiFi without ethernet, so wlan0 will be available, but some laptops have not monitor mode.*
+  
   Using Tool at attack:
   
-
   ```./setup.sh <interface>```
 
 **For example:**
