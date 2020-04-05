@@ -53,15 +53,19 @@
   The script is more for trolling people, you can still use it if you can. 
   You can use own word for SSIDs.
   SSID = Name of WiFi.
+  
   The script will read the file ```~/ap_killer/wordlist.txt``` so you can add manually, generate or skip it.
   
   *Manualy:*
+  
   Script will prompt a gedit file, type any name upto 10 characters and save it with ctrl+s, close it with alt+f4.
   
-  *Automatically*
+  *Automatically:*
+  
   User will enter count of words, then it generates words and using them.
   
-  *Skipping*
+  *Skipping:*
+  
   If you have already a file inside there, then it will skip.
   
   
