@@ -25,11 +25,16 @@
 
  ## In Progress:
  
-  **Version 0.5**
-  * Resetting spoofed mac
- 
+  **Version 0.6**
+  * Option to skip background scanning
+  * Automatic executing ```dis.sh```
  
   ## Already leaked versions:
+  
+  **Version 0.5**
+  * Added dis.sh
+  * Fixed some errors
+  * Added resetting spoofed mac after exit
   
   **Version 0.4**
   * Added Access Point Flood script [see more here](#access-point-flooder)
@@ -112,6 +117,19 @@
 
 ```main.sh``` is the main script but do not start it because then setup.sh enable the monitor mode and mac spoofer.
   Make sure you have killed all networking processes, and close firefox or any internet application.
+
+**Afterwards Attack**
+  
+  After attack run the ```dis```(abling monitor mode)```.sh```, enter your already setuped monitor mode interface and 
+  wait until the script has been completed.
+  Function: 
+  * Disabling Spoofed MAC
+  * Disabling Monitor Mode
+  * Restarting Network Processes
+  
+  Run:
+  
+  ```./dis.sh```
 
 # Credits
 
