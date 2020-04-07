@@ -61,8 +61,8 @@ else
 	sleep 3
 	echo ""
 	echo -e "${BLUE}[*] ${YELLOW}Enabling Wifi-Adapter..."
-	airmon-ng check kill
-	airmon-ng start $1 
+	airmon-ng check kill &>/dev/null
+	airmon-ng start $1 &>/dev/null
 	sleep 0.5
 	echo -e "${BLUE}[*] ${GREEN}Your Wifi-Chipset's monitor mode has been enabled"
 	export $1

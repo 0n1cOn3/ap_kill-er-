@@ -18,7 +18,7 @@ echo -e $BOLD""
 if [[ $1 == "" ]]
 then
 	echo -e "${RED}[*] ${YELLOW}Please specify interface.
-Example :${MAGENTA} ./fakeap.sh wlan0mon"
+Example :${MAGENTA} ./setup.sh wlan0mon"
 else
 	sleep 1
 	echo -ne "$BLUE[*] ${YELLOW}Do you want to create word by Yourself, Randomize or Skip?[Y/R/S] "

