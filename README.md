@@ -138,7 +138,7 @@
 # Social Media
 Telegram:
 * @MrBlackX
-* @On1c0n3
+* @0n1cOn3
 * @rebl0x3r
 
 # Join us at telegram: https://t.me/rebl0x3r  
