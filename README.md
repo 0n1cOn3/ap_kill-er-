@@ -1,7 +1,5 @@
-# ACCESS POINT KILLER
-
-
-## Table of contents:
+# AP Kill(er)
+## Table of content:
 * [General Information](#general-info)
 * [Changelog](#changelog)
 * [Installation](#installation)
@@ -12,11 +10,15 @@
 
 ## General Information
 
-  Acces Point Killer was only for my personal help, i have not found a working tool that deauthenticate all access points(AP)
-  out of network. After some researching i began to wrote this little script-tool. 
-  The AP killer automatically changing your mac address at the setup, then it checks if you have enabled **wlan0mon** or not.
-  You can enable it manually before you are starting the script. This tool is an linux CLI tool, which only works on **Linux**
-  and not Termux or other phone platforms.
+AP Kill(er) was a personal help back in 2019 for a member of TheViperZCrew group, and they had not found a working tool that could deauthenticate all access points (AP) from the network. 
+After some research, the member started writing this small script tool. 
+
+The AP killer automatically changes the MAC address during setup and checks if wlan0mon is enabled. You can enable this manually before running the script.
+
+**WARNING:**
+This script was written explicitly for Linux.
+
+There are for other systems like Windows WSL, FreeBSD, *nix or applications for smartphones like Termux for Android or iSH for iOS are not supported.
 
 ## Changelog
 
@@ -28,19 +30,18 @@
   * Added MAC changer
 
 ## Disclaimer
-  Use this tool for purposes only .:-) 🕵️‍♂️
-  If you do any illegal attacks, i am not responsible for your tasks.
-  Use this tool correctly, and do not re-upload it on your github repository without permissions.
+  > * Use this script only for school and learning purposes!
+  > * If you make any illegal attacks pointing to this script, the author and currently maintainer of this project disclaims any liability.  
+  > * Use the tool properly and according to the national regulations.  
 
 ## Installation
-
-  You can use any linux you want.
   
-  ```git clone https://github.com/ViperZCrew/ap_killer.git```
+  ```git clone https://github.com/0n1cOn3/ap_killer.git```
   
   ```cd ap_killer && chmod +x *.sh```
   
-  Using Tool at attack:
+  
+## Using Tool at attack:
   
 
 ```bash setup.sh```
