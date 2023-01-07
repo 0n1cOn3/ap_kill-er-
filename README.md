@@ -20,6 +20,9 @@
 
 ## Changelog
 
+  **[Upda] v0.1.1:**
+  * Refactored code
+  
   **[BETA] v0.1:**
   * Added 2 methods to attack
   * Added MAC changer
@@ -52,12 +55,8 @@
 
 ## Social Media
 Telegram:
-* @MrBlackX
-* @On1c0n3
-* @rebl0x3r
-
-# Join us at telegram: https://t.me/rebl0x3r  
+* @h_2_o0
 
 ## Bug Report
-  If you found any bug or issue, pless go [here](https://github.com/ViperZCrew/ap_killer/issues)
+  If you found any bug or issue, pless go [here](https://github.com/0n1cOn3/ap_killer/issues)
   You can also request an update.
